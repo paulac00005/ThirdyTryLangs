@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Spinner security;
 
-    private static final String REGISTER_URL = "http://10.4.101.44/sbs/sign_up.php";
+    private static final String REGISTER_URL = "http://10.4.101.44/sbs/";
 
 
     @Override
@@ -82,11 +82,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String answer = etAnswer.getText().toString().trim().toLowerCase();
         String key = "70930f27";
 
-        register(username, password, question, answer, key);
+        Register(username, password, question, answer, key);
     }
 
-    private void register(String username, String password, String question, String answer, String key) {
-        class register extends AsyncTask<String, Void, String>{
+    private void Register(String username, String password, String question, String answer, String key) {
+        class RegisterUser extends AsyncTask<String, Void, String>{
             ProgressDialog loading;
 
 
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 data.put("answer", params[3]);
                 data.put("key", "70930f27");
 
-                String result = sendPostReq(REGISTER_URL,data);
+                String result = sendPostReq(REGISTER_URL + "sign_up.php",data);
 
                 return  result;
             }
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
-        register ru = new register();
+        RegisterUser ru = new RegisterUser();
         ru.execute(username, password, question, answer, key);
     }
 
